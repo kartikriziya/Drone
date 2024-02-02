@@ -551,20 +551,22 @@ public class Dashboard extends JFrame {
 		lblDocumentationDevelopers.setFont(new Font("Tahoma", Font.ITALIC, 21));
 		lblDocumentationDevelopers.setBounds(750, 240, 300, 40);
 		teamPanel.add(lblDocumentationDevelopers);
-		
-		JLabel lblReubin = new JLabel("Reubin Sam Thomas");
-		lblReubin.setHorizontalAlignment(SwingConstants.LEFT);
-		lblReubin.setForeground(Color.WHITE);
-		lblReubin.setFont(new Font("Tahoma", Font.BOLD, 21));
-		lblReubin.setBounds(750, 300, 250, 40);
-		teamPanel.add(lblReubin);
-		
-		JLabel lblTara = new JLabel("Tara Khoramnia ");
+	
+		JLabel lblTara = new JLabel("Tara Khoramnia");
 		lblTara.setHorizontalAlignment(SwingConstants.LEFT);
 		lblTara.setForeground(Color.WHITE);
 		lblTara.setFont(new Font("Tahoma", Font.BOLD, 21));
 		lblTara.setBounds(50, 350, 200, 40);
 		teamPanel.add(lblTara);
+		
+
+		JLabel lblReubin = new JLabel("Reubin Sam Thomas");
+		lblReubin.setHorizontalAlignment(SwingConstants.LEFT);
+		lblReubin.setForeground(Color.WHITE);
+		lblReubin.setFont(new Font("Tahoma", Font.BOLD, 21));
+		lblReubin.setBounds(750, 300, 250, 40);
+		lblReubin.setBounds(750, 300, 300, 40);
+		teamPanel.add(lblReubin);
 		
 		
 		
