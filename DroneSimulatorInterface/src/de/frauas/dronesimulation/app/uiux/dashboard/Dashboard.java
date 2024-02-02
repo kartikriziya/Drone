@@ -556,14 +556,14 @@ public class Dashboard extends JFrame {
 		lblTara.setHorizontalAlignment(SwingConstants.LEFT);
 		lblTara.setForeground(Color.WHITE);
 		lblTara.setFont(new Font("Tahoma", Font.BOLD, 21));
-		lblTara.setBounds(750, 300, 200, 40);
+		lblTara.setBounds(50, 350, 200, 40);
 		teamPanel.add(lblTara);
 		
 		JLabel lblReubin = new JLabel("Reubin Sam Thomas");
 		lblReubin.setHorizontalAlignment(SwingConstants.LEFT);
 		lblReubin.setForeground(Color.WHITE);
 		lblReubin.setFont(new Font("Tahoma", Font.BOLD, 21));
-		lblReubin.setBounds(750, 346, 300, 40);
+		lblReubin.setBounds(750, 300, 300, 40);
 		teamPanel.add(lblReubin);
 		
 		
