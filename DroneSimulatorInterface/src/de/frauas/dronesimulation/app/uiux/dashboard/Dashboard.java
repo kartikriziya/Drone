@@ -1,23 +1,17 @@
 package de.frauas.dronesimulation.app.uiux.dashboard;
 
-import java.awt.EventQueue;
-
-import javax.swing.JFrame;
-import javax.swing.JPanel;
+import javax.swing.*;
 import javax.swing.border.EmptyBorder;
-import java.awt.Color;
-import javax.swing.JLabel;
-import javax.swing.JList;
-import javax.swing.JOptionPane;
-
-import java.awt.Font;
-
-import javax.swing.DefaultComboBoxModel;
-import javax.swing.ImageIcon;
-import javax.swing.SwingConstants;
-import javax.swing.JScrollPane;
-import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
+import javax.swing.border.BevelBorder;
+import javax.swing.border.MatteBorder;
+import javax.swing.border.LineBorder;
+
+import java.awt.*;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
 
 import de.frauas.dronesimulation.app.apiconnection.ApiHandler;
 import de.frauas.dronesimulation.app.dronedynamics.DroneDynamics;
@@ -26,19 +20,12 @@ import de.frauas.dronesimulation.app.dronetype.DroneType;
 import de.frauas.dronesimulation.app.main.Helper;
 import de.frauas.dronesimulation.app.main.main;
 
-import java.awt.CardLayout;
-import java.awt.event.MouseAdapter;
-import java.awt.event.MouseEvent;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Logger;
-
-import javax.swing.JComboBox;
-import java.awt.event.ActionListener;
-import java.awt.event.ActionEvent;
-import javax.swing.JTextArea;
 
 public class Dashboard extends JFrame {
 	
@@ -54,29 +41,29 @@ public class Dashboard extends JFrame {
 	
 	static JLabel droneID;
 	
-	static JLabel droneInfos_lbl1;
-	static JLabel droneInfos_lbl2;
-	static JLabel droneInfos_lbl3;
-	static JLabel droneInfos_lbl4;
-	static JLabel droneInfos_lbl5;
-	static JLabel droneInfos_lbl6;
-	static JLabel droneInfos_lbl7;
-	static JLabel droneInfos_lbl8;
+	static JLabel droneModel;
+	static JLabel droneSerial;
+	static JLabel droneWeight;
+	static JLabel droneMaxSpeed;
+	static JLabel droneType;
+	static JLabel droneBattery;
+	static JLabel droneCarriageWeight;
+	static JLabel droneMaxCarriage;
 	
-	static JLabel dynamicInfos_lbl1;
-	static JLabel dynamicInfos_lbl2;
-	static JLabel dynamicInfos_lbl3;
-	static JLabel dynamicInfos_lbl4;
-	static JLabel dynamicInfos_lbl5;
-	static JLabel dynamicInfos_lbl6;
-	static JLabel dynamicInfos_lbl7;
-	static JLabel dynamicInfos_lbl8;
+	static JLabel dynamicSpeed;
+	static JLabel dynamicSerial;
+	static JLabel dynamicRoll;
+	static JLabel dynamicPitch;
+	static JLabel dynamicYaw;
+	static JLabel dynamicLongitude;
+	static JLabel dynamicLastSeen;
+	static JLabel dynamicStatus;
 	
-	static JLabel drone_Icon;
-	static JLabel drone_Icon_Extra;
-	static JLabel droneBattery_Icon;
-	static JLabel droneSpeed_Icon;
-	static JLabel droneStatus_Icon;
+	static JLabel iconDrone;
+	static JLabel iconDroneExtra;
+	static JLabel iconDroneBattery;
+	static JLabel iconDroneSpeed;
+	static JLabel iconDroneStatus;
 	
 	
 
@@ -104,64 +91,67 @@ public class Dashboard extends JFrame {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(0, 0, 1200, 800);
 		contentPane = new JPanel();
-		contentPane.setBackground(new Color(0, 128, 128));
+		contentPane.setBackground(new Color(25, 131, 168));
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 		
 		JPanel headerPanel = new JPanel();
-		headerPanel.setBounds(0, 0, 1186, 149);
-		headerPanel.setBackground(new Color(0, 128, 128));
+		headerPanel.setBounds(0, 0, 1200, 150);
+		headerPanel.setBackground(new Color(19, 102, 131));
 		contentPane.add(headerPanel);
 		headerPanel.setLayout(null);
 		
-		JLabel lblNewLabel = new JLabel("Drone Simulation");
-		lblNewLabel.setHorizontalAlignment(SwingConstants.CENTER);
-		lblNewLabel.setForeground(new Color(255, 255, 255));
-		lblNewLabel.setFont(new Font("Tahoma", Font.BOLD, 27));
-		lblNewLabel.setBounds(28, 10, 294, 78);
-		headerPanel.add(lblNewLabel);
+		JLabel lblDroneSimulation = new JLabel("Drone Simulation");
+		lblDroneSimulation.setBackground(Color.WHITE);
+		lblDroneSimulation.setHorizontalAlignment(SwingConstants.CENTER);
+		lblDroneSimulation.setForeground(new Color(255, 255, 255));
+		lblDroneSimulation.setFont(new Font("Tahoma", Font.BOLD, 27));
+		lblDroneSimulation.setBounds(28, 10, 294, 78);
+		headerPanel.add(lblDroneSimulation);
 		
 		JLabel dashboard = new JLabel("Dashboard");
+		dashboard.setBackground(Color.WHITE);
 		dashboard.setHorizontalAlignment(SwingConstants.CENTER);
 		dashboard.setForeground(Color.WHITE);
 		dashboard.setFont(new Font("Tahoma", Font.BOLD, 18));
-		dashboard.setIcon(new ImageIcon(Dashboard.class.getResource("/de/frauas/dronesimulation/app/ui/icon/1.png")));
+		dashboard.setIcon(new ImageIcon(Dashboard.class.getResource("/de/frauas/dronesimulation/app/ui/icon/5.png")));
 		dashboard.setBounds(200, 87, 195, 54);
 		headerPanel.add(dashboard);
 		
 		JLabel manufactures = new JLabel("Manufactures");
-		manufactures.setIcon(new ImageIcon(Dashboard.class.getResource("/de/frauas/dronesimulation/app/ui/icon/3.png")));
+		manufactures.setBackground(Color.WHITE);
+		manufactures.setIcon(new ImageIcon(Dashboard.class.getResource("/de/frauas/dronesimulation/app/ui/icon/6.png")));
 		manufactures.setHorizontalAlignment(SwingConstants.CENTER);
 		manufactures.setForeground(Color.WHITE);
 		manufactures.setFont(new Font("Tahoma", Font.BOLD, 18));
 		manufactures.setBounds(405, 87, 195, 54);
 		headerPanel.add(manufactures);
 		
+		JLabel about = new JLabel("About");
+		about.setBackground(Color.WHITE);
+		about.setBounds(610, 87, 195, 54);
+		headerPanel.add(about);
+		about.setIcon(new ImageIcon(Dashboard.class.getResource("/de/frauas/dronesimulation/app/ui/icon/about1.png")));
+		about.setHorizontalAlignment(SwingConstants.CENTER);
+		about.setForeground(Color.WHITE);
+		about.setFont(new Font("Tahoma", Font.BOLD, 18));
+		
 		JLabel team = new JLabel("Our Team");
-		team.setIcon(new ImageIcon(Dashboard.class.getResource("/de/frauas/dronesimulation/app/ui/icon/4.png")));
+		team.setBackground(Color.WHITE);
+		team.setIcon(new ImageIcon(Dashboard.class.getResource("/de/frauas/dronesimulation/app/ui/icon/8.png")));
 		team.setHorizontalAlignment(SwingConstants.CENTER);
 		team.setForeground(Color.WHITE);
 		team.setFont(new Font("Tahoma", Font.BOLD, 18));
 		team.setBounds(815, 87, 195, 54);
 		headerPanel.add(team);
 		
-		JLabel refresh_lbl = new JLabel("");
-		refresh_lbl.setIcon(new ImageIcon(Dashboard.class.getResource("/de/frauas/dronesimulation/app/ui/icon/4.png")));
-		refresh_lbl.setHorizontalAlignment(SwingConstants.CENTER);
-		refresh_lbl.setForeground(Color.WHITE);
-		refresh_lbl.setFont(new Font("Tahoma", Font.BOLD, 27));
-		refresh_lbl.setBounds(1098, 10, 78, 78);
-		headerPanel.add(refresh_lbl);
-		
-		JLabel about = new JLabel("About");
-		about.setBounds(610, 87, 195, 54);
-		headerPanel.add(about);
-		about.setIcon(new ImageIcon(Dashboard.class.getResource("/de/frauas/dronesimulation/app/ui/icon/2.png")));
-		about.setHorizontalAlignment(SwingConstants.CENTER);
-		about.setForeground(Color.WHITE);
-		about.setFont(new Font("Tahoma", Font.BOLD, 18));
+		JLabel lblRefresh = new JLabel("");
+		lblRefresh.setIcon(new ImageIcon(Dashboard.class.getResource("/de/frauas/dronesimulation/app/ui/icon/refresh1.png")));
+		lblRefresh.setHorizontalAlignment(SwingConstants.CENTER);
+		lblRefresh.setBounds(1098, 10, 78, 78);
+		headerPanel.add(lblRefresh);
 		
 		JPanel contentPanel = new JPanel();
 		contentPanel.setBackground(new Color(0, 128, 0));
@@ -170,7 +160,7 @@ public class Dashboard extends JFrame {
 		contentPanel.setLayout(new CardLayout(0, 0));
 		
 		JPanel tablePanel = new JPanel();
-		tablePanel.setBackground(new Color(0, 128, 128));
+		tablePanel.setBackground(new Color(25, 131, 168));
 		contentPanel.add(tablePanel, "name_276719349104700");
 		tablePanel.setLayout(null);
 		
@@ -186,106 +176,107 @@ public class Dashboard extends JFrame {
 		table.setModel(model);
 		scrollPanel.setViewportView(table);
 		
-		JLabel droneOverview_lbl = new JLabel("Drone Overview Table");
-		droneOverview_lbl.setHorizontalAlignment(SwingConstants.CENTER);
-		droneOverview_lbl.setForeground(Color.WHITE);
-		droneOverview_lbl.setFont(new Font("Tahoma", Font.BOLD, 21));
-		droneOverview_lbl.setBounds(10, 10, 294, 48);
-		tablePanel.add(droneOverview_lbl);
+		JLabel lblDroneOverview = new JLabel("Drone Overview Table");
+		lblDroneOverview.setBackground(Color.WHITE);
+		lblDroneOverview.setHorizontalAlignment(SwingConstants.CENTER);
+		lblDroneOverview.setForeground(Color.WHITE);
+		lblDroneOverview.setFont(new Font("Tahoma", Font.BOLD, 21));
+		lblDroneOverview.setBounds(10, 10, 294, 48);
+		tablePanel.add(lblDroneOverview);
 		
 		JPanel cardPanel = new JPanel();
-		cardPanel.setBackground(new Color(0, 128, 128));
+		cardPanel.setBackground(new Color(25, 131, 168));
 		contentPanel.add(cardPanel, "name_249565888064300");
 		cardPanel.setLayout(null);
 		
 		JPanel droneInfos = new JPanel();
-		droneInfos.setBackground(new Color(192, 192, 192));
+		droneInfos.setBackground(Color.WHITE);
 		droneInfos.setBounds(10, 78, 330, 400);
 		cardPanel.add(droneInfos);
 		droneInfos.setLayout(null);
 		
-		droneInfos_lbl1 = new JLabel("Model: ");
-		droneInfos_lbl1.setFont(new Font("Tahoma", Font.PLAIN, 16));
-		droneInfos_lbl1.setBounds(10, 10, 274, 29);
-		droneInfos.add(droneInfos_lbl1);
+		droneModel = new JLabel("Model: ");
+		droneModel.setFont(new Font("Tahoma", Font.PLAIN, 16));
+		droneModel.setBounds(10, 10, 274, 29);
+		droneInfos.add(droneModel);
 		
-		droneInfos_lbl2 = new JLabel("Serial Number:");
-		droneInfos_lbl2.setFont(new Font("Tahoma", Font.PLAIN, 16));
-		droneInfos_lbl2.setBounds(10, 49, 274, 29);
-		droneInfos.add(droneInfos_lbl2);
+		droneSerial = new JLabel("Serial Number:");
+		droneSerial.setFont(new Font("Tahoma", Font.PLAIN, 16));
+		droneSerial.setBounds(10, 49, 274, 29);
+		droneInfos.add(droneSerial);
 		
-		droneInfos_lbl3 = new JLabel("Weight: ");
-		droneInfos_lbl3.setFont(new Font("Tahoma", Font.PLAIN, 16));
-		droneInfos_lbl3.setBounds(10, 88, 274, 29);
-		droneInfos.add(droneInfos_lbl3);
+		droneWeight = new JLabel("Weight: ");
+		droneWeight.setFont(new Font("Tahoma", Font.PLAIN, 16));
+		droneWeight.setBounds(10, 88, 274, 29);
+		droneInfos.add(droneWeight);
 		
-		droneInfos_lbl4 = new JLabel("Max Speed: ");
-		droneInfos_lbl4.setFont(new Font("Tahoma", Font.PLAIN, 16));
-		droneInfos_lbl4.setBounds(10, 127, 274, 29);
-		droneInfos.add(droneInfos_lbl4);
+		droneMaxSpeed = new JLabel("Max Speed: ");
+		droneMaxSpeed.setFont(new Font("Tahoma", Font.PLAIN, 16));
+		droneMaxSpeed.setBounds(10, 127, 274, 29);
+		droneInfos.add(droneMaxSpeed);
 		
-		droneInfos_lbl5 = new JLabel("Carriage type: ");
-		droneInfos_lbl5.setFont(new Font("Tahoma", Font.PLAIN, 16));
-		droneInfos_lbl5.setBounds(10, 166, 274, 29);
-		droneInfos.add(droneInfos_lbl5);
+		droneType = new JLabel("Carriage type: ");
+		droneType.setFont(new Font("Tahoma", Font.PLAIN, 16));
+		droneType.setBounds(10, 166, 274, 29);
+		droneInfos.add(droneType);
 		
-		droneInfos_lbl6 = new JLabel("Battery Capacity: ");
-		droneInfos_lbl6.setFont(new Font("Tahoma", Font.PLAIN, 16));
-		droneInfos_lbl6.setBounds(10, 205, 274, 29);
-		droneInfos.add(droneInfos_lbl6);
+		droneBattery = new JLabel("Battery Capacity: ");
+		droneBattery.setFont(new Font("Tahoma", Font.PLAIN, 16));
+		droneBattery.setBounds(10, 205, 274, 29);
+		droneInfos.add(droneBattery);
 		
-		droneInfos_lbl7 = new JLabel("Carriage weight: ");
-		droneInfos_lbl7.setFont(new Font("Tahoma", Font.PLAIN, 16));
-		droneInfos_lbl7.setBounds(10, 244, 274, 29);
-		droneInfos.add(droneInfos_lbl7);
+		droneCarriageWeight = new JLabel("Carriage weight: ");
+		droneCarriageWeight.setFont(new Font("Tahoma", Font.PLAIN, 16));
+		droneCarriageWeight.setBounds(10, 244, 274, 29);
+		droneInfos.add(droneCarriageWeight);
 		
-		droneInfos_lbl8 = new JLabel("Max Carriage weight: ");
-		droneInfos_lbl8.setFont(new Font("Tahoma", Font.PLAIN, 16));
-		droneInfos_lbl8.setBounds(10, 283, 274, 29);
-		droneInfos.add(droneInfos_lbl8);
+		droneMaxCarriage = new JLabel("Max Carriage weight: ");
+		droneMaxCarriage.setFont(new Font("Tahoma", Font.PLAIN, 16));
+		droneMaxCarriage.setBounds(10, 283, 274, 29);
+		droneInfos.add(droneMaxCarriage);
 		
-		JLabel lblNewLabel_2_1 = new JLabel("Drone Infos");
-		lblNewLabel_2_1.setHorizontalAlignment(SwingConstants.CENTER);
-		lblNewLabel_2_1.setForeground(new Color(0, 128, 128));
-		lblNewLabel_2_1.setFont(new Font("Tahoma", Font.BOLD, 21));
-		lblNewLabel_2_1.setBounds(10, 342, 310, 48);
-		droneInfos.add(lblNewLabel_2_1);
+		JLabel lblDroneInfos = new JLabel("Drone Infos");
+		lblDroneInfos.setHorizontalAlignment(SwingConstants.CENTER);
+		lblDroneInfos.setForeground(new Color(25, 131, 168));
+		lblDroneInfos.setFont(new Font("Tahoma", Font.BOLD, 21));
+		lblDroneInfos.setBounds(10, 342, 310, 48);
+		droneInfos.add(lblDroneInfos);
 		
 		JPanel droneIcons = new JPanel();
-		droneIcons.setBackground(new Color(192, 192, 192));
+		droneIcons.setBackground(Color.WHITE);
 		droneIcons.setBounds(788, 78, 294, 400);
 		cardPanel.add(droneIcons);
 		droneIcons.setLayout(null);
 		
-		drone_Icon = new JLabel("");
-		drone_Icon.setHorizontalAlignment(SwingConstants.CENTER);
-		drone_Icon.setIcon(new ImageIcon(Dashboard.class.getResource("/de/frauas/dronesimulation/app/ui/icon/5.png")));
-		drone_Icon.setBounds(10, 25, 110, 110);
-		droneIcons.add(drone_Icon);
+		iconDrone = new JLabel("");
+		iconDrone.setHorizontalAlignment(SwingConstants.CENTER);
+		iconDrone.setIcon(new ImageIcon(Dashboard.class.getResource("/de/frauas/dronesimulation/app/ui/icon/5.png")));
+		iconDrone.setBounds(10, 25, 110, 110);
+		droneIcons.add(iconDrone);
 		
-		droneSpeed_Icon = new JLabel("");
-		droneSpeed_Icon.setIcon(new ImageIcon(Dashboard.class.getResource("/de/frauas/dronesimulation/app/ui/icon/5.png")));
-		droneSpeed_Icon.setHorizontalAlignment(SwingConstants.CENTER);
-		droneSpeed_Icon.setBounds(10, 267, 130, 110);
-		droneIcons.add(droneSpeed_Icon);
+		iconDroneSpeed = new JLabel("");
+		iconDroneSpeed.setIcon(new ImageIcon(Dashboard.class.getResource("/de/frauas/dronesimulation/app/ui/icon/5.png")));
+		iconDroneSpeed.setHorizontalAlignment(SwingConstants.CENTER);
+		iconDroneSpeed.setBounds(10, 267, 130, 110);
+		droneIcons.add(iconDroneSpeed);
 		
-		droneBattery_Icon = new JLabel("");
-		droneBattery_Icon.setIcon(new ImageIcon(Dashboard.class.getResource("/de/frauas/dronesimulation/app/ui/icon/5.png")));
-		droneBattery_Icon.setHorizontalAlignment(SwingConstants.CENTER);
-		droneBattery_Icon.setBounds(50, 147, 200, 110);
-		droneIcons.add(droneBattery_Icon);
+		iconDroneBattery = new JLabel("");
+		iconDroneBattery.setIcon(new ImageIcon(Dashboard.class.getResource("/de/frauas/dronesimulation/app/ui/icon/5.png")));
+		iconDroneBattery.setHorizontalAlignment(SwingConstants.CENTER);
+		iconDroneBattery.setBounds(50, 147, 200, 110);
+		droneIcons.add(iconDroneBattery);
 		
-		droneStatus_Icon = new JLabel("");
-		droneStatus_Icon.setIcon(new ImageIcon(Dashboard.class.getResource("/de/frauas/dronesimulation/app/ui/icon/5.png")));
-		droneStatus_Icon.setHorizontalAlignment(SwingConstants.CENTER);
-		droneStatus_Icon.setBounds(154, 267, 130, 110);
-		droneIcons.add(droneStatus_Icon);
+		iconDroneStatus = new JLabel("");
+		iconDroneStatus.setIcon(new ImageIcon(Dashboard.class.getResource("/de/frauas/dronesimulation/app/ui/icon/5.png")));
+		iconDroneStatus.setHorizontalAlignment(SwingConstants.CENTER);
+		iconDroneStatus.setBounds(154, 267, 130, 110);
+		droneIcons.add(iconDroneStatus);
 		
-		drone_Icon_Extra = new JLabel("");
-		drone_Icon_Extra.setIcon(new ImageIcon(Dashboard.class.getResource("/de/frauas/dronesimulation/app/ui/icon/5.png")));
-		drone_Icon_Extra.setHorizontalAlignment(SwingConstants.CENTER);
-		drone_Icon_Extra.setBounds(174, 25, 110, 110);
-		droneIcons.add(drone_Icon_Extra);
+		iconDroneExtra = new JLabel("");
+		iconDroneExtra.setIcon(new ImageIcon(Dashboard.class.getResource("/de/frauas/dronesimulation/app/ui/icon/5.png")));
+		iconDroneExtra.setHorizontalAlignment(SwingConstants.CENTER);
+		iconDroneExtra.setBounds(174, 25, 110, 110);
+		droneIcons.add(iconDroneExtra);
 		
 		droneID = new JLabel("");
 		droneID.setToolTipText("");
@@ -297,62 +288,62 @@ public class Dashboard extends JFrame {
 		
 		JPanel dynamicInfos = new JPanel();
 		dynamicInfos.setLayout(null);
-		dynamicInfos.setBackground(Color.LIGHT_GRAY);
+		dynamicInfos.setBackground(Color.WHITE);
 		dynamicInfos.setBounds(351, 78, 427, 400);
 		cardPanel.add(dynamicInfos);
 		
-		dynamicInfos_lbl1 = new JLabel("Speed: ");
-		dynamicInfos_lbl1.setFont(new Font("Tahoma", Font.PLAIN, 16));
-		dynamicInfos_lbl1.setBounds(10, 10, 407, 29);
-		dynamicInfos.add(dynamicInfos_lbl1);
+		dynamicSpeed = new JLabel("Speed: ");
+		dynamicSpeed.setFont(new Font("Tahoma", Font.PLAIN, 16));
+		dynamicSpeed.setBounds(10, 10, 407, 29);
+		dynamicInfos.add(dynamicSpeed);
 		
-		dynamicInfos_lbl2 = new JLabel("Serial Number: ");
-		dynamicInfos_lbl2.setFont(new Font("Tahoma", Font.PLAIN, 16));
-		dynamicInfos_lbl2.setBounds(10, 49, 407, 29);
-		dynamicInfos.add(dynamicInfos_lbl2);
+		dynamicSerial = new JLabel("Serial Number: ");
+		dynamicSerial.setFont(new Font("Tahoma", Font.PLAIN, 16));
+		dynamicSerial.setBounds(10, 49, 407, 29);
+		dynamicInfos.add(dynamicSerial);
 		
-		dynamicInfos_lbl3 = new JLabel("Align Roll: ");
-		dynamicInfos_lbl3.setFont(new Font("Tahoma", Font.PLAIN, 16));
-		dynamicInfos_lbl3.setBounds(10, 88, 407, 29);
-		dynamicInfos.add(dynamicInfos_lbl3);
+		dynamicRoll = new JLabel("Align Roll: ");
+		dynamicRoll.setFont(new Font("Tahoma", Font.PLAIN, 16));
+		dynamicRoll.setBounds(10, 88, 407, 29);
+		dynamicInfos.add(dynamicRoll);
 		
-		dynamicInfos_lbl4 = new JLabel("Align Pitch: ");
-		dynamicInfos_lbl4.setFont(new Font("Tahoma", Font.PLAIN, 16));
-		dynamicInfos_lbl4.setBounds(10, 127, 407, 29);
-		dynamicInfos.add(dynamicInfos_lbl4);
+		dynamicPitch = new JLabel("Align Pitch: ");
+		dynamicPitch.setFont(new Font("Tahoma", Font.PLAIN, 16));
+		dynamicPitch.setBounds(10, 127, 407, 29);
+		dynamicInfos.add(dynamicPitch);
 		
-		dynamicInfos_lbl5 = new JLabel("Align Yaw: ");
-		dynamicInfos_lbl5.setFont(new Font("Tahoma", Font.PLAIN, 16));
-		dynamicInfos_lbl5.setBounds(10, 166, 407, 29);
-		dynamicInfos.add(dynamicInfos_lbl5);
+		dynamicYaw = new JLabel("Align Yaw: ");
+		dynamicYaw.setFont(new Font("Tahoma", Font.PLAIN, 16));
+		dynamicYaw.setBounds(10, 166, 407, 29);
+		dynamicInfos.add(dynamicYaw);
 		
-		dynamicInfos_lbl6 = new JLabel("Longitude: ");
-		dynamicInfos_lbl6.setFont(new Font("Tahoma", Font.PLAIN, 16));
-		dynamicInfos_lbl6.setBounds(10, 205, 407, 29);
-		dynamicInfos.add(dynamicInfos_lbl6);
+		dynamicLongitude = new JLabel("Longitude: ");
+		dynamicLongitude.setFont(new Font("Tahoma", Font.PLAIN, 16));
+		dynamicLongitude.setBounds(10, 205, 407, 29);
+		dynamicInfos.add(dynamicLongitude);
 		
-		dynamicInfos_lbl7 = new JLabel("Last Seen: ");
-		dynamicInfos_lbl7.setFont(new Font("Tahoma", Font.PLAIN, 16));
-		dynamicInfos_lbl7.setBounds(10, 244, 407, 29);
-		dynamicInfos.add(dynamicInfos_lbl7);
+		dynamicLastSeen = new JLabel("Last Seen: ");
+		dynamicLastSeen.setFont(new Font("Tahoma", Font.PLAIN, 16));
+		dynamicLastSeen.setBounds(10, 244, 407, 29);
+		dynamicInfos.add(dynamicLastSeen);
 		
-		dynamicInfos_lbl8 = new JLabel("Status: ");
-		dynamicInfos_lbl8.setFont(new Font("Tahoma", Font.PLAIN, 16));
-		dynamicInfos_lbl8.setBounds(10, 283, 407, 29);
-		dynamicInfos.add(dynamicInfos_lbl8);
+		dynamicStatus = new JLabel("Status: ");
+		dynamicStatus.setFont(new Font("Tahoma", Font.PLAIN, 16));
+		dynamicStatus.setBounds(10, 283, 407, 29);
+		dynamicInfos.add(dynamicStatus);
 		
-		JLabel lblNewLabel_2_1_1 = new JLabel("Dynamic Infos");
-		lblNewLabel_2_1_1.setHorizontalAlignment(SwingConstants.CENTER);
-		lblNewLabel_2_1_1.setForeground(new Color(0, 128, 128));
-		lblNewLabel_2_1_1.setFont(new Font("Tahoma", Font.BOLD, 21));
-		lblNewLabel_2_1_1.setBounds(10, 342, 407, 48);
-		dynamicInfos.add(lblNewLabel_2_1_1);
+		JLabel lblDynamicInfos = new JLabel("Dynamic Infos");
+		lblDynamicInfos.setHorizontalAlignment(SwingConstants.CENTER);
+		lblDynamicInfos.setForeground(new Color(25, 131, 168));
+		lblDynamicInfos.setFont(new Font("Tahoma", Font.BOLD, 21));
+		lblDynamicInfos.setBounds(10, 342, 407, 48);
+		dynamicInfos.add(lblDynamicInfos);
 		
-		JLabel back_lbl = new JLabel("");
-		back_lbl.setIcon(new ImageIcon(Dashboard.class.getResource("/de/frauas/dronesimulation/app/ui/icon/7.png")));
-		back_lbl.setHorizontalAlignment(SwingConstants.CENTER);
-		back_lbl.setBounds(954, 10, 128, 61);
-		cardPanel.add(back_lbl);
+		JLabel lblBack = new JLabel("");
+		lblBack.setIcon(new ImageIcon(Dashboard.class.getResource("/de/frauas/dronesimulation/app/ui/icon/return0.png")));
+		lblBack.setHorizontalAlignment(SwingConstants.CENTER);
+		lblBack.setBounds(954, 10, 128, 61);
+		cardPanel.add(lblBack);
 		
 		JComboBox<String> drone_DatePicker = new JComboBox<String>();
 		drone_DatePicker.setBounds(351, 23, 250, 35);
@@ -363,39 +354,217 @@ public class Dashboard extends JFrame {
 		cardPanel.add(drone_TimePicker);
 		
 		JPanel manufacturesPanel = new JPanel();
-		manufacturesPanel.setBackground(new Color(0, 128, 128));
+		manufacturesPanel.setBorder(new LineBorder(new Color(0, 0, 0)));
+		manufacturesPanel.setBackground(new Color(25, 131, 168));
 		contentPanel.add(manufacturesPanel, "name_287063045570700");
 		manufacturesPanel.setLayout(null);
 		
-		JLabel lblNewLabel_2 = new JLabel("More than 10+ Brands");
-		lblNewLabel_2.setHorizontalAlignment(SwingConstants.CENTER);
-		lblNewLabel_2.setFont(new Font("Tahoma", Font.BOLD, 21));
-		lblNewLabel_2.setForeground(new Color(255, 255, 255));
-		lblNewLabel_2.setBounds(10, 10, 294, 48);
-		manufacturesPanel.add(lblNewLabel_2);
+		JLabel txtManufacture = new JLabel("More than 10+ Brands");
+		txtManufacture.setHorizontalAlignment(SwingConstants.CENTER);
+		txtManufacture.setFont(new Font("Tahoma", Font.BOLD, 21));
+		txtManufacture.setForeground(new Color(255, 255, 255));
+		txtManufacture.setBounds(10, 10, 294, 48);
+		manufacturesPanel.add(txtManufacture);
 		
-		JLabel lblNewLabel_3 = new JLabel("");
-		lblNewLabel_3.setFont(new Font("Tahoma", Font.PLAIN, 10));
-		lblNewLabel_3.setHorizontalAlignment(SwingConstants.CENTER);
-		lblNewLabel_3.setIcon(new ImageIcon(Dashboard.class.getResource("/de/frauas/dronesimulation/app/ui/icon/8.png")));
-		lblNewLabel_3.setBounds(20, 68, 120, 110);
-		manufacturesPanel.add(lblNewLabel_3);
+		JLabel iconSkydio = new JLabel("");
+		iconSkydio.setHorizontalAlignment(SwingConstants.CENTER);
+		iconSkydio.setIcon(new ImageIcon(Dashboard.class.getResource("/de/frauas/dronesimulation/app/ui/icon/droneGallery/ Skydio.png")));
+		iconSkydio.setBounds(50, 70, 120, 110);
+		manufacturesPanel.add(iconSkydio);
+		
+		JLabel iconYuneec = new JLabel("");
+		iconYuneec.setIcon(new ImageIcon(Dashboard.class.getResource("/de/frauas/dronesimulation/app/ui/icon/droneGallery/ Yuneec.png")));
+		iconYuneec.setHorizontalAlignment(SwingConstants.CENTER);
+		iconYuneec.setBounds(250, 70, 120, 110);
+		manufacturesPanel.add(iconYuneec);
+		
+		JLabel iconAutelRobotics = new JLabel("");
+		iconAutelRobotics.setIcon(new ImageIcon(Dashboard.class.getResource("/de/frauas/dronesimulation/app/ui/icon/droneGallery/AutelRobotics.png")));
+		iconAutelRobotics.setHorizontalAlignment(SwingConstants.CENTER);
+		iconAutelRobotics.setBounds(450, 70, 120, 110);
+		manufacturesPanel.add(iconAutelRobotics);
+		
+		JLabel iconContixo = new JLabel("");
+		iconContixo.setIcon(new ImageIcon(Dashboard.class.getResource("/de/frauas/dronesimulation/app/ui/icon/droneGallery/ Contixo.png")));
+		iconContixo.setHorizontalAlignment(SwingConstants.CENTER);
+		iconContixo.setBounds(650, 70, 120, 110);
+		manufacturesPanel.add(iconContixo);
+		
+		JLabel iconAltairAerial = new JLabel("");
+		iconAltairAerial.setIcon(new ImageIcon(Dashboard.class.getResource("/de/frauas/dronesimulation/app/ui/icon/droneGallery/Altair.jpeg")));
+		iconAltairAerial.setHorizontalAlignment(SwingConstants.CENTER);
+		iconAltairAerial.setBounds(50, 200, 120, 110);
+		manufacturesPanel.add(iconAltairAerial);
+		
+		JLabel iconWalkera = new JLabel("");
+		iconWalkera.setIcon(new ImageIcon(Dashboard.class.getResource("/de/frauas/dronesimulation/app/ui/icon/droneGallery/ Walkera.png")));
+		iconWalkera.setHorizontalAlignment(SwingConstants.CENTER);
+		iconWalkera.setBounds(50, 330, 120, 110);
+		manufacturesPanel.add(iconWalkera);
+		
+		JLabel iconHolyStone = new JLabel("");
+		iconHolyStone.setIcon(new ImageIcon(Dashboard.class.getResource("/de/frauas/dronesimulation/app/ui/icon/droneGallery/HolyStone.png")));
+		iconHolyStone.setHorizontalAlignment(SwingConstants.CENTER);
+		iconHolyStone.setBounds(250, 200, 120, 110);
+		manufacturesPanel.add(iconHolyStone);
+		
+		JLabel iconPotensic = new JLabel("");
+		iconPotensic.setIcon(new ImageIcon(Dashboard.class.getResource("/de/frauas/dronesimulation/app/ui/icon/droneGallery/Potensic.png")));
+		iconPotensic.setHorizontalAlignment(SwingConstants.CENTER);
+		iconPotensic.setBounds(250, 330, 120, 110);
+		manufacturesPanel.add(iconPotensic);
+		
+		JLabel iconHubsan = new JLabel("");
+		iconHubsan.setIcon(new ImageIcon(Dashboard.class.getResource("/de/frauas/dronesimulation/app/ui/icon/droneGallery/Hubsan.png")));
+		iconHubsan.setHorizontalAlignment(SwingConstants.CENTER);
+		iconHubsan.setBounds(450, 200, 120, 110);
+		manufacturesPanel.add(iconHubsan);
+		
+		JLabel iconPowerVision = new JLabel("");
+		iconPowerVision.setIcon(new ImageIcon(Dashboard.class.getResource("/de/frauas/dronesimulation/app/ui/icon/droneGallery/PowerVision.png")));
+		iconPowerVision.setHorizontalAlignment(SwingConstants.CENTER);
+		iconPowerVision.setBounds(450, 330, 120, 110);
+		manufacturesPanel.add(iconPowerVision);
+		
+		JLabel iconSyma = new JLabel("");
+		iconSyma.setIcon(new ImageIcon(Dashboard.class.getResource("/de/frauas/dronesimulation/app/ui/icon/droneGallery/symas.png")));
+		iconSyma.setHorizontalAlignment(SwingConstants.CENTER);
+		iconSyma.setBounds(650, 200, 120, 110);
+		manufacturesPanel.add(iconSyma);
+		
+		JLabel iconRyze = new JLabel("");
+		iconRyze.setIcon(new ImageIcon(Dashboard.class.getResource("/de/frauas/dronesimulation/app/ui/icon/droneGallery/Ryze.png")));
+		iconRyze.setHorizontalAlignment(SwingConstants.CENTER);
+		iconRyze.setBounds(650, 330, 120, 110);
+		manufacturesPanel.add(iconRyze);
+		
+		JLabel iconGopro = new JLabel("");
+		iconGopro.setIcon(new ImageIcon(Dashboard.class.getResource("/de/frauas/dronesimulation/app/ui/icon/droneGallery/gopro_Logo.jpg")));
+		iconGopro.setHorizontalAlignment(SwingConstants.CENTER);
+		iconGopro.setBounds(850, 70, 120, 110);
+		manufacturesPanel.add(iconGopro);
+		
+		JLabel iconBlade = new JLabel("");
+		iconBlade.setIcon(new ImageIcon(Dashboard.class.getResource("/de/frauas/dronesimulation/app/ui/icon/droneGallery/Blade.png")));
+		iconBlade.setHorizontalAlignment(SwingConstants.CENTER);
+		iconBlade.setBounds(850, 200, 120, 110);
+		manufacturesPanel.add(iconBlade);
+		
+		JLabel iconSnaptain = new JLabel("");
+		iconSnaptain.setIcon(new ImageIcon(Dashboard.class.getResource("/de/frauas/dronesimulation/app/ui/icon/droneGallery/Snaptain.png")));
+		iconSnaptain.setHorizontalAlignment(SwingConstants.CENTER);
+		iconSnaptain.setBounds(850, 330, 120, 110);
+		manufacturesPanel.add(iconSnaptain);
 		
 		JPanel aboutPanel = new JPanel();
-		aboutPanel.setBackground(new Color(0, 128, 128));
+		aboutPanel.setBorder(new MatteBorder(1, 1, 1, 1, (Color) new Color(19, 102, 131)));
+		aboutPanel.setBackground(new Color(25, 131, 168));
 		contentPanel.add(aboutPanel, "name_287472189737400");
 		aboutPanel.setLayout(null);
 		
+		JLabel txtAbout = new JLabel("About Us");
+		txtAbout.setVerticalAlignment(SwingConstants.TOP);
+		txtAbout.setHorizontalAlignment(SwingConstants.LEFT);
+		txtAbout.setForeground(Color.WHITE);
+		txtAbout.setFont(new Font("Tahoma", Font.BOLD, 21));
+		txtAbout.setBounds(30, 30, 200, 40);
+		aboutPanel.add(txtAbout);
+		
+		JTextArea txtrWelcomeToOur = new JTextArea();
+		txtrWelcomeToOur.setEditable(false);
+		txtrWelcomeToOur.setForeground(Color.WHITE);
+		txtrWelcomeToOur.setBackground(new Color(25, 131, 168));
+		txtrWelcomeToOur.setText("\n  Welcome to our exciting project! \n\n  We're working on a Java application that connects with a cool drone simulation system. \n  This system uses a web-based RESTful API to give us all the details about a bunch of simulated drones – \n  everything from the basic essentials to the intricate specifics of cargo and real-time positional information. \n\n  Our goal is to make interacting with the drone simulator super easy and fun. \n  How? By building a sleek Graphical User Interface (GUI) using Java. \n  This GUI won't just fetch the data; it'll present it in a way that's easy to understand and looks great.\n\n  Our team was able to design a GUI that went beyond expectations. \n  It gives users a smooth and awesome experience with the drone simulation. \n\n  Join us in making drone simulation cooler and more accessible with the power of Java! ");
+		txtrWelcomeToOur.setFont(new Font("Microsoft Sans Serif", Font.ITALIC, 17));
+		txtrWelcomeToOur.setBounds(30, 100, 1030, 350);
+		aboutPanel.add(txtrWelcomeToOur);
+		
 		JPanel teamPanel = new JPanel();
-		teamPanel.setBackground(new Color(0, 128, 128));
+		teamPanel.setBorder(new BevelBorder(BevelBorder.LOWERED, new Color(19, 102, 131), new Color(19, 102, 131), new Color(19, 102, 131), new Color(19, 102, 131)));
+		teamPanel.setBackground(new Color(25, 131, 168));
 		contentPanel.add(teamPanel, "name_287528452812400");
 		teamPanel.setLayout(null);
 		
-		JLabel lblNewLabel_6 = new JLabel("Image 1");
-		lblNewLabel_6.setFont(new Font("Tahoma", Font.BOLD | Font.ITALIC, 21));
-		lblNewLabel_6.setHorizontalAlignment(SwingConstants.CENTER);
-		lblNewLabel_6.setBounds(10, 10, 150, 180);
-		teamPanel.add(lblNewLabel_6);
+		JLabel iconBackend = new JLabel("");
+		iconBackend.setIcon(new ImageIcon(Dashboard.class.getResource("/de/frauas/dronesimulation/app/ui/icon/droneGallery/backend1.png")));
+		iconBackend.setHorizontalAlignment(SwingConstants.CENTER);
+		iconBackend.setBounds(50, 80, 150, 150);
+		teamPanel.add(iconBackend);
+		
+		JLabel lblOurTeam = new JLabel("Our Team");
+		lblOurTeam.setHorizontalAlignment(SwingConstants.LEFT);
+		lblOurTeam.setForeground(Color.WHITE);
+		lblOurTeam.setFont(new Font("Tahoma", Font.BOLD, 21));
+		lblOurTeam.setBounds(20, 30, 200, 50);
+		teamPanel.add(lblOurTeam);
+		
+		JLabel lblBackend = new JLabel("Backend Developer");
+		lblBackend.setHorizontalAlignment(SwingConstants.LEFT);
+		lblBackend.setForeground(Color.WHITE);
+		lblBackend.setFont(new Font("Tahoma", Font.ITALIC, 21));
+		lblBackend.setBounds(50, 240, 200, 40);
+		teamPanel.add(lblBackend);
+		
+		JLabel lblKoosha = new JLabel("Koosha Olad");
+		lblKoosha.setHorizontalAlignment(SwingConstants.LEFT);
+		lblKoosha.setForeground(Color.WHITE);
+		lblKoosha.setFont(new Font("Tahoma", Font.BOLD, 21));
+		lblKoosha.setBounds(50, 300, 200, 40);
+		teamPanel.add(lblKoosha);
+		
+		JLabel iconFrontend = new JLabel("");
+		iconFrontend.setIcon(new ImageIcon(Dashboard.class.getResource("/de/frauas/dronesimulation/app/ui/icon/droneGallery/frontend.png")));
+		iconFrontend.setHorizontalAlignment(SwingConstants.CENTER);
+		iconFrontend.setBounds(400, 80, 150, 150);
+		teamPanel.add(iconFrontend);
+		
+		JLabel lblFrontend = new JLabel("Frontend Developers");
+		lblFrontend.setHorizontalAlignment(SwingConstants.LEFT);
+		lblFrontend.setForeground(Color.WHITE);
+		lblFrontend.setFont(new Font("Tahoma", Font.ITALIC, 21));
+		lblFrontend.setBounds(400, 240, 200, 40);
+		teamPanel.add(lblFrontend);
+		
+		JLabel lblKartik = new JLabel("Kartik Riziya");
+		lblKartik.setHorizontalAlignment(SwingConstants.LEFT);
+		lblKartik.setForeground(Color.WHITE);
+		lblKartik.setFont(new Font("Tahoma", Font.BOLD, 21));
+		lblKartik.setBounds(400, 300, 200, 40);
+		teamPanel.add(lblKartik);
+
+		JLabel lblHana = new JLabel("Hana Eltalawy");
+		lblHana.setHorizontalAlignment(SwingConstants.LEFT);
+		lblHana.setForeground(Color.WHITE);
+		lblHana.setFont(new Font("Tahoma", Font.BOLD, 21));
+		lblHana.setBounds(400, 346, 200, 40);
+		teamPanel.add(lblHana);
+		
+		JLabel iconDocumentation = new JLabel("");
+		iconDocumentation.setIcon(new ImageIcon(Dashboard.class.getResource("/de/frauas/dronesimulation/app/ui/icon/droneGallery/documentation.png")));
+		iconDocumentation.setHorizontalAlignment(SwingConstants.CENTER);
+		iconDocumentation.setBounds(750, 80, 150, 150);
+		teamPanel.add(iconDocumentation);
+		
+		JLabel lblDocumentationDevelopers = new JLabel("Documentation Developers");
+		lblDocumentationDevelopers.setHorizontalAlignment(SwingConstants.LEFT);
+		lblDocumentationDevelopers.setForeground(Color.WHITE);
+		lblDocumentationDevelopers.setFont(new Font("Tahoma", Font.ITALIC, 21));
+		lblDocumentationDevelopers.setBounds(750, 240, 300, 40);
+		teamPanel.add(lblDocumentationDevelopers);
+		
+		JLabel lblTara = new JLabel("Tara Khoramnia");
+		lblTara.setHorizontalAlignment(SwingConstants.LEFT);
+		lblTara.setForeground(Color.WHITE);
+		lblTara.setFont(new Font("Tahoma", Font.BOLD, 21));
+		lblTara.setBounds(750, 300, 200, 40);
+		teamPanel.add(lblTara);
+		
+		JLabel lblReubin = new JLabel("Reubin Sam Thomas");
+		lblReubin.setHorizontalAlignment(SwingConstants.LEFT);
+		lblReubin.setForeground(Color.WHITE);
+		lblReubin.setFont(new Font("Tahoma", Font.BOLD, 21));
+		lblReubin.setBounds(750, 346, 300, 40);
+		teamPanel.add(lblReubin);
 		
 		
 		
@@ -567,7 +736,7 @@ public class Dashboard extends JFrame {
 		
 		
 		// back button to show Drone Overview Table again
-		back_lbl.addMouseListener(new MouseAdapter() {
+		lblBack.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
 				drone_TimePicker.setSelectedItem(
@@ -581,7 +750,7 @@ public class Dashboard extends JFrame {
 		
 		
 		// refresh button to reset Drone Overview Table
-		refresh_lbl.addMouseListener(new MouseAdapter() {
+		lblRefresh.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
 				emptyDroneOverviewTable();
@@ -649,24 +818,24 @@ public class Dashboard extends JFrame {
 			droneID.setText((String) "# " + drone.getDroneType().getManufacturer() + " ID: " + drone.getId());
 			droneID.setToolTipText(String.valueOf(drone.getId()));
 			
-			droneInfos_lbl1.setText((String) "Typename: " + drone.getDroneType().getTypeName());
-			droneInfos_lbl2.setText((String) "Serial Number: " + drone.getSerialnumber());
-			droneInfos_lbl3.setText((String) "Weight: " + drone.getDroneType().getWeight());
-			droneInfos_lbl4.setText((String) "Max Speed: " + drone.getDroneType().getMax_speed());
-			droneInfos_lbl5.setText((String) "Carriage type: " + drone.getCarriageType());
-			droneInfos_lbl6.setText((String) "Battery Capacity: " + String.valueOf(drone.getDroneType().getBatterycapacity()));
-			//droneInfos_lbl6.setText((String) "Battery Capacity: " + batteryPercentage + " %");
-			droneInfos_lbl7.setText((String) "Carriage weight: " + drone.getCarriageWeight());
-			droneInfos_lbl8.setText((String) "Max Carriage weight: " + drone.getDroneType().getMaxCarriage());
+			droneModel.setText((String) "Typename: " + drone.getDroneType().getTypeName());
+			droneSerial.setText((String) "Serial Number: " + drone.getSerialnumber());
+			droneWeight.setText((String) "Weight: " + drone.getDroneType().getWeight());
+			droneMaxSpeed.setText((String) "Max Speed: " + drone.getDroneType().getMax_speed());
+			droneType.setText((String) "Carriage type: " + drone.getCarriageType());
+			droneBattery.setText((String) "Battery Capacity: " + String.valueOf(drone.getDroneType().getBatterycapacity()));
+			//droneBatteryCapacity.setText((String) "Battery Capacity: " + batteryPercentage + " %");
+			droneCarriageWeight.setText((String) "Carriage weight: " + drone.getCarriageWeight());
+			droneMaxCarriage.setText((String) "Max Carriage weight: " + drone.getDroneType().getMaxCarriage());
 			
-			dynamicInfos_lbl1.setText((String) "Speed: " + drone.getDroneDynamics().getSpeed());
-			dynamicInfos_lbl2.setText((String) "Serial Number: " + drone.getSerialnumber());
-			dynamicInfos_lbl3.setText((String) "Align Roll: " + drone.getDroneDynamics().getAlignRoll());
-			dynamicInfos_lbl4.setText((String) "Align Pitch: " + drone.getDroneDynamics().getAlignPitch());
-			dynamicInfos_lbl5.setText((String) "Align Yaw: " + drone.getDroneDynamics().getAlignYaw());
-			dynamicInfos_lbl6.setText((String) "Longitude: " + drone.getDroneDynamics().getLongitude());
-			dynamicInfos_lbl7.setText((String) "Last Seen: " + drone.getDroneDynamics().getLastSeen());
-			dynamicInfos_lbl8.setText((String) "Status: " + drone.getDroneDynamics().getStatus());
+			dynamicSpeed.setText((String) "Speed: " + drone.getDroneDynamics().getSpeed());
+			dynamicSerial.setText((String) "Serial Number: " + drone.getSerialnumber());
+			dynamicRoll.setText((String) "Align Roll: " + drone.getDroneDynamics().getAlignRoll());
+			dynamicPitch.setText((String) "Align Pitch: " + drone.getDroneDynamics().getAlignPitch());
+			dynamicYaw.setText((String) "Align Yaw: " + drone.getDroneDynamics().getAlignYaw());
+			dynamicLongitude.setText((String) "Longitude: " + drone.getDroneDynamics().getLongitude());
+			dynamicLastSeen.setText((String) "Last Seen: " + drone.getDroneDynamics().getLastSeen());
+			dynamicStatus.setText((String) "Status: " + drone.getDroneDynamics().getStatus());
 			
 
 			fetchDroneIcons(drone, batteryPercentage);
@@ -691,24 +860,24 @@ public class Dashboard extends JFrame {
 					
 					droneID.setText((String) "# " + drone.getDroneType().getManufacturer() + " ID: " + drone.getId());
 					
-					droneInfos_lbl1.setText((String) "Typename: " + drone.getDroneType().getTypeName());
-					droneInfos_lbl2.setText((String) "Serial Number: " + drone.getSerialnumber());
-					droneInfos_lbl3.setText((String) "Weight: " + drone.getDroneType().getWeight());
-					droneInfos_lbl4.setText((String) "Max Speed: " + drone.getDroneType().getMax_speed());
-					droneInfos_lbl5.setText((String) "Carriage type: " + drone.getCarriageType());
-					droneInfos_lbl6.setText((String) "Battery Capacity: " + String.valueOf(drone.getDroneType().getBatterycapacity()));
-					//droneInfos_lbl6.setText((String) "Battery Capacity: " + batteryPercentage + " %");
-					droneInfos_lbl7.setText((String) "Carriage weight: " + drone.getCarriageWeight());
-					droneInfos_lbl8.setText((String) "Max Carriage weight: " + drone.getDroneType().getMaxCarriage());
+					droneModel.setText((String) "Typename: " + drone.getDroneType().getTypeName());
+					droneSerial.setText((String) "Serial Number: " + drone.getSerialnumber());
+					droneWeight.setText((String) "Weight: " + drone.getDroneType().getWeight());
+					droneMaxSpeed.setText((String) "Max Speed: " + drone.getDroneType().getMax_speed());
+					droneType.setText((String) "Carriage type: " + drone.getCarriageType());
+					droneBattery.setText((String) "Battery Capacity: " + String.valueOf(drone.getDroneType().getBatterycapacity()));
+					//droneBatteryCapacity.setText((String) "Battery Capacity: " + batteryPercentage + " %");
+					droneCarriageWeight.setText((String) "Carriage weight: " + drone.getCarriageWeight());
+					droneMaxCarriage.setText((String) "Max Carriage weight: " + drone.getDroneType().getMaxCarriage());
 					
-					dynamicInfos_lbl1.setText((String) "Speed: " + drone.getDroneDynamics().getSpeed());
-					dynamicInfos_lbl2.setText((String) "Serial Number: " + drone.getSerialnumber());
-					dynamicInfos_lbl3.setText((String) "Align Roll: " + drone.getDroneDynamics().getAlignRoll());
-					dynamicInfos_lbl4.setText((String) "Align Pitch: " + drone.getDroneDynamics().getAlignPitch());
-					dynamicInfos_lbl5.setText((String) "Align Yaw: " + drone.getDroneDynamics().getAlignYaw());
-					dynamicInfos_lbl6.setText((String) "Longitude: " + drone.getDroneDynamics().getLongitude());
-					dynamicInfos_lbl7.setText((String) "Last Seen: " + drone.getDroneDynamics().getLastSeen());
-					dynamicInfos_lbl8.setText((String) "Status: " + drone.getDroneDynamics().getStatus());
+					dynamicSpeed.setText((String) "Speed: " + drone.getDroneDynamics().getSpeed());
+					dynamicSerial.setText((String) "Serial Number: " + drone.getSerialnumber());
+					dynamicRoll.setText((String) "Align Roll: " + drone.getDroneDynamics().getAlignRoll());
+					dynamicPitch.setText((String) "Align Pitch: " + drone.getDroneDynamics().getAlignPitch());
+					dynamicYaw.setText((String) "Align Yaw: " + drone.getDroneDynamics().getAlignYaw());
+					dynamicLongitude.setText((String) "Longitude: " + drone.getDroneDynamics().getLongitude());
+					dynamicLastSeen.setText((String) "Last Seen: " + drone.getDroneDynamics().getLastSeen());
+					dynamicStatus.setText((String) "Status: " + drone.getDroneDynamics().getStatus());
 					
 		
 					fetchDroneIcons(drone, batteryPercentage);
@@ -746,96 +915,96 @@ public class Dashboard extends JFrame {
 		// For Drone
 		if (drone.getDroneType().getTypeName()
 				.equals("AA108")) {
-			drone_Icon.setIcon(new javax.swing.ImageIcon(Dashboard.class.getResource(iconPath + "droneGallery/" + "AA108" + ".png")));
+			iconDrone.setIcon(new ImageIcon(Dashboard.class.getResource(iconPath + "droneGallery/" + "AA108" + ".png")));
 		} else if (drone.getDroneType().getTypeName()
 				.equals("Chroma Camera Drone")) {
-			drone_Icon.setIcon(new javax.swing.ImageIcon(Dashboard.class.getResource(iconPath + "droneGallery/" + "Chroma Camera Drone" + ".png")));
+			iconDrone.setIcon(new ImageIcon(Dashboard.class.getResource(iconPath + "droneGallery/" + "Chroma Camera Drone" + ".png")));
 		} else if (drone.getDroneType().getTypeName()
 				.equals("D80")) {
-			drone_Icon.setIcon(new javax.swing.ImageIcon(Dashboard.class.getResource(iconPath + "droneGallery/" + "D80" + ".png")));
+			iconDrone.setIcon(new ImageIcon(Dashboard.class.getResource(iconPath + "droneGallery/" + "D80" + ".png")));
 		} else if (drone.getDroneType().getTypeName()
 				.equals("Evo II")) {
-			drone_Icon.setIcon(new javax.swing.ImageIcon(Dashboard.class.getResource(iconPath + "droneGallery/" + "Evo II" + ".png")));
+			iconDrone.setIcon(new ImageIcon(Dashboard.class.getResource(iconPath + "droneGallery/" + "Evo II" + ".png")));
 		} else if (drone.getDroneType().getTypeName()
 				.equals("F24 Pro")) {
-			drone_Icon.setIcon(new javax.swing.ImageIcon(Dashboard.class.getResource(iconPath + "droneGallery/" + "F24 Pro" + ".png")));
+			iconDrone.setIcon(new ImageIcon(Dashboard.class.getResource(iconPath + "droneGallery/" + "F24 Pro" + ".png")));
 		} else if (drone.getDroneType().getTypeName()
 				.equals("HS100")) {
-			drone_Icon.setIcon(new javax.swing.ImageIcon(Dashboard.class.getResource(iconPath + "droneGallery/" + "HS100" + ".png")));
+			iconDrone.setIcon(new ImageIcon(Dashboard.class.getResource(iconPath + "droneGallery/" + "HS100" + ".png")));
 		} else if (drone.getDroneType().getTypeName()
 				.equals("Karma")) {
-			drone_Icon.setIcon(new javax.swing.ImageIcon(Dashboard.class.getResource(iconPath + "droneGallery/" + "Karma" + ".png")));
+			iconDrone.setIcon(new ImageIcon(Dashboard.class.getResource(iconPath + "droneGallery/" + "Karma" + ".png")));
 		} else if (drone.getDroneType().getTypeName()
 				.equals("PowerEgg X")) {
-			drone_Icon.setIcon(new javax.swing.ImageIcon(Dashboard.class.getResource(iconPath + "droneGallery/" + "PowerEgg X" + ".png")));
+			iconDrone.setIcon(new ImageIcon(Dashboard.class.getResource(iconPath + "droneGallery/" + "PowerEgg X" + ".png")));
 		} else if (drone.getDroneType().getTypeName()
 				.equals("S5C")) {
-			drone_Icon.setIcon(new javax.swing.ImageIcon(Dashboard.class.getResource(iconPath + "droneGallery/" + "S5C" + ".png")));
+			iconDrone.setIcon(new ImageIcon(Dashboard.class.getResource(iconPath + "droneGallery/" + "S5C" + ".png")));
 		} else if (drone.getDroneType().getTypeName()
 				.equals("Skydio 2")) {
-			drone_Icon.setIcon(new javax.swing.ImageIcon(Dashboard.class.getResource(iconPath + "droneGallery/" + "Skydio 2" + ".png")));
+			iconDrone.setIcon(new ImageIcon(Dashboard.class.getResource(iconPath + "droneGallery/" + "Skydio 2" + ".png")));
 		} else if (drone.getDroneType().getTypeName()
 				.equals("Tello")) {
-			drone_Icon.setIcon(new javax.swing.ImageIcon(Dashboard.class.getResource(iconPath + "droneGallery/" + "Tello" + ".png")));
+			iconDrone.setIcon(new ImageIcon(Dashboard.class.getResource(iconPath + "droneGallery/" + "Tello" + ".png")));
 		} else if (drone.getDroneType().getTypeName()
 				.equals("Typhoon H Pro")) {
-			drone_Icon.setIcon(new javax.swing.ImageIcon(Dashboard.class.getResource(iconPath + "droneGallery/" + "Typhoon H Pro" + ".png")));
+			iconDrone.setIcon(new ImageIcon(Dashboard.class.getResource(iconPath + "droneGallery/" + "Typhoon H Pro" + ".png")));
 		} else if (drone.getDroneType().getTypeName()
 				.equals("Voyager 4")) {
-			drone_Icon.setIcon(new javax.swing.ImageIcon(Dashboard.class.getResource(iconPath + "droneGallery/" + "Voyager 4" + ".png")));
+			iconDrone.setIcon(new ImageIcon(Dashboard.class.getResource(iconPath + "droneGallery/" + "Voyager 4" + ".png")));
 		} else if (drone.getDroneType().getTypeName()
 				.equals("X4 H107D")) {
-			drone_Icon.setIcon(new javax.swing.ImageIcon(Dashboard.class.getResource(iconPath + "droneGallery/" + "X4 H107D" + ".png")));
+			iconDrone.setIcon(new ImageIcon(Dashboard.class.getResource(iconPath + "droneGallery/" + "X4 H107D" + ".png")));
 		} else if (drone.getDroneType().getTypeName()
 				.equals("X5C")) {
-			drone_Icon.setIcon(new javax.swing.ImageIcon(Dashboard.class.getResource(iconPath + "droneGallery/" + "X5C" + ".png")));
+			iconDrone.setIcon(new ImageIcon(Dashboard.class.getResource(iconPath + "droneGallery/" + "X5C" + ".png")));
 		}
 		
 		if (drone.getCarriageType().equals("NOT")) {
-			drone_Icon_Extra.setIcon(new javax.swing.ImageIcon(Dashboard.class.getResource(iconPath + "droneGallery/" + "droneNOT" + ".png")));
+			iconDroneExtra.setIcon(new ImageIcon(Dashboard.class.getResource(iconPath + "droneGallery/" + "droneNOT" + ".png")));
 		} else if (drone.getCarriageType().equals("ACT")) {
-			drone_Icon_Extra.setIcon(new javax.swing.ImageIcon(Dashboard.class.getResource(iconPath + "droneGallery/" + "droneACT" + ".png")));
+			iconDroneExtra.setIcon(new ImageIcon(Dashboard.class.getResource(iconPath + "droneGallery/" + "droneACT" + ".png")));
 		} else if (drone.getCarriageType().equals("SEN")) {
-			drone_Icon_Extra.setIcon(new javax.swing.ImageIcon(Dashboard.class.getResource(iconPath + "droneGallery/" + "droneSEN" + ".png")));
+			iconDroneExtra.setIcon(new ImageIcon(Dashboard.class.getResource(iconPath + "droneGallery/" + "droneSEN" + ".png")));
 		}
 		
 		
 		
 		// For Battery
 		if (batteryPercentage == 0) {
-			droneBattery_Icon.setIcon(new javax.swing.ImageIcon(Dashboard.class.getResource(iconBattery0)));
+			iconDroneBattery.setIcon(new ImageIcon(Dashboard.class.getResource(iconBattery0)));
 		} else if (batteryPercentage > 0 && batteryPercentage <= 35) {
-			droneBattery_Icon.setIcon(new javax.swing.ImageIcon(Dashboard.class.getResource(iconBattery25)));
+			iconDroneBattery.setIcon(new ImageIcon(Dashboard.class.getResource(iconBattery25)));
 		} else if (batteryPercentage > 35 && batteryPercentage <= 60) {
-			droneBattery_Icon.setIcon(new javax.swing.ImageIcon(Dashboard.class.getResource(iconBattery50)));
+			iconDroneBattery.setIcon(new ImageIcon(Dashboard.class.getResource(iconBattery50)));
 		} else if (batteryPercentage > 60 && batteryPercentage <= 99) {
-			droneBattery_Icon.setIcon(new javax.swing.ImageIcon(Dashboard.class.getResource(iconBattery75)));
+			iconDroneBattery.setIcon(new ImageIcon(Dashboard.class.getResource(iconBattery75)));
 		} else if (batteryPercentage == 100) {
-			droneBattery_Icon.setIcon(new javax.swing.ImageIcon(Dashboard.class.getResource(iconBattery100)));
+			iconDroneBattery.setIcon(new ImageIcon(Dashboard.class.getResource(iconBattery100)));
 		}
 		
 		
 		// For Speedometer
 		if (Integer.valueOf(drone.getDroneDynamics().getSpeed()) <= 10) {
-			droneSpeed_Icon.setIcon(new javax.swing.ImageIcon(Dashboard.class.getResource(speed1)));
+			iconDroneSpeed.setIcon(new ImageIcon(Dashboard.class.getResource(speed1)));
 		} else if (Integer.valueOf(drone.getDroneDynamics().getSpeed()) <= 20) {
-			droneSpeed_Icon.setIcon(new javax.swing.ImageIcon(Dashboard.class.getResource(speed2)));
+			iconDroneSpeed.setIcon(new ImageIcon(Dashboard.class.getResource(speed2)));
 		} else if (Integer.valueOf(drone.getDroneDynamics().getSpeed()) <= 30) {
-			droneSpeed_Icon.setIcon(new javax.swing.ImageIcon(Dashboard.class.getResource(speed3)));
+			iconDroneSpeed.setIcon(new ImageIcon(Dashboard.class.getResource(speed3)));
 		} else if (Integer.valueOf(drone.getDroneDynamics().getSpeed()) <= 40) {
-			droneSpeed_Icon.setIcon(new javax.swing.ImageIcon(Dashboard.class.getResource(speed4)));
+			iconDroneSpeed.setIcon(new ImageIcon(Dashboard.class.getResource(speed4)));
 		} else if (Integer.valueOf(drone.getDroneDynamics().getSpeed()) <= 50) {
-			droneSpeed_Icon.setIcon(new javax.swing.ImageIcon(Dashboard.class.getResource(speed5)));
+			iconDroneSpeed.setIcon(new ImageIcon(Dashboard.class.getResource(speed5)));
 		} else {
-			droneSpeed_Icon.setIcon(new javax.swing.ImageIcon(Dashboard.class.getResource(speed6)));
+			iconDroneSpeed.setIcon(new ImageIcon(Dashboard.class.getResource(speed6)));
 		}
 		
 		
 		// For Switch
 		if (drone.getDroneDynamics().getStatus().equals("ON")) {
-			droneStatus_Icon.setIcon(new javax.swing.ImageIcon(Dashboard.class.getResource(iconSwitchOn)));
+			iconDroneStatus.setIcon(new ImageIcon(Dashboard.class.getResource(iconSwitchOn)));
 		} else {
-			droneStatus_Icon.setIcon(new javax.swing.ImageIcon(Dashboard.class.getResource(iconSwitchOff)));
+			iconDroneStatus.setIcon(new ImageIcon(Dashboard.class.getResource(iconSwitchOff)));
 		}
 		
 	}
@@ -946,5 +1115,4 @@ public class Dashboard extends JFrame {
 		
 	/**************************************************************************************************/
 	/* 										 End of Methods                                           */
-	/**************************************************************************************************/
 }
