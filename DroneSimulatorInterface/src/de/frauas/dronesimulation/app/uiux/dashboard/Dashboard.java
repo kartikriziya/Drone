@@ -498,7 +498,7 @@ public class Dashboard extends JFrame {
 		lblOurTeam.setBounds(20, 30, 300, 50);
 		teamPanel.add(lblOurTeam);
 		
-		JLabel lblBackend = new JLabel("Backend Developer");
+		JLabel lblBackend = new JLabel("Backend Developers");
 		lblBackend.setHorizontalAlignment(SwingConstants.LEFT);
 		lblBackend.setForeground(Color.WHITE);
 		lblBackend.setFont(new Font("Tahoma", Font.ITALIC, 21));
@@ -545,7 +545,7 @@ public class Dashboard extends JFrame {
 		iconDocumentation.setBounds(750, 80, 150, 150);
 		teamPanel.add(iconDocumentation);
 		
-		JLabel lblDocumentationDevelopers = new JLabel("Documentation Developers");
+		JLabel lblDocumentationDevelopers = new JLabel("Documentation Developer");
 		lblDocumentationDevelopers.setHorizontalAlignment(SwingConstants.LEFT);
 		lblDocumentationDevelopers.setForeground(Color.WHITE);
 		lblDocumentationDevelopers.setFont(new Font("Tahoma", Font.ITALIC, 21));
