@@ -1,5 +1,5 @@
 package de.frauas.dronesimulation.app.uiux.dashboard;
-////Last one
+
 import javax.swing.*;
 import javax.swing.border.EmptyBorder;
 import javax.swing.table.DefaultTableModel;
@@ -103,12 +103,12 @@ public class Dashboard extends JFrame {
 		contentPane.add(headerPanel);
 		headerPanel.setLayout(null);
 		
-		JLabel lblDroneSimulation = new JLabel("Drone Simulation");
+		JLabel lblDroneSimulation = new JLabel("Drone Simulation Interface");
 		lblDroneSimulation.setBackground(Color.WHITE);
-		lblDroneSimulation.setHorizontalAlignment(SwingConstants.CENTER);
+		lblDroneSimulation.setHorizontalAlignment(SwingConstants.LEFT);
 		lblDroneSimulation.setForeground(new Color(255, 255, 255));
 		lblDroneSimulation.setFont(new Font("Tahoma", Font.BOLD, 27));
-		lblDroneSimulation.setBounds(28, 10, 294, 78);
+		lblDroneSimulation.setBounds(28, 10, 500, 78);
 		headerPanel.add(lblDroneSimulation);
 		
 		JLabel dashboard = new JLabel("Dashboard");
@@ -178,10 +178,10 @@ public class Dashboard extends JFrame {
 		
 		JLabel lblDroneOverview = new JLabel("Drone Overview Table");
 		lblDroneOverview.setBackground(Color.WHITE);
-		lblDroneOverview.setHorizontalAlignment(SwingConstants.CENTER);
+		lblDroneOverview.setHorizontalAlignment(SwingConstants.LEFT);
 		lblDroneOverview.setForeground(Color.WHITE);
 		lblDroneOverview.setFont(new Font("Tahoma", Font.BOLD, 21));
-		lblDroneOverview.setBounds(10, 10, 294, 48);
+		lblDroneOverview.setBounds(30, 10, 294, 48);
 		tablePanel.add(lblDroneOverview);
 		
 		JPanel cardPanel = new JPanel();
@@ -280,10 +280,10 @@ public class Dashboard extends JFrame {
 		
 		droneID = new JLabel("");
 		droneID.setToolTipText("");
-		droneID.setHorizontalAlignment(SwingConstants.CENTER);
+		droneID.setHorizontalAlignment(SwingConstants.LEFT);
 		droneID.setForeground(Color.WHITE);
 		droneID.setFont(new Font("Tahoma", Font.BOLD, 21));
-		droneID.setBounds(10, 10, 294, 48);
+		droneID.setBounds(30, 10, 300, 50);
 		cardPanel.add(droneID);
 		
 		JPanel dynamicInfos = new JPanel();
@@ -474,9 +474,9 @@ public class Dashboard extends JFrame {
 		txtrWelcomeToOur.setEditable(false);
 		txtrWelcomeToOur.setForeground(Color.WHITE);
 		txtrWelcomeToOur.setBackground(new Color(25, 131, 168));
-		txtrWelcomeToOur.setText("\n  Welcome to our exciting project! \n\n  We're working on a Java application that connects with a cool drone simulation system. \n  This system uses a web-based RESTful API to give us all the details about a bunch of simulated drones – \n  everything from the basic essentials to the intricate specifics of cargo and real-time positional information. \n\n  Our goal is to make interacting with the drone simulator super easy and fun. \n  How? By building a sleek Graphical User Interface (GUI) using Java. \n  This GUI won't just fetch the data; it'll present it in a way that's easy to understand and looks great.\n\n  Our team was able to design a GUI that went beyond expectations. \n  It gives users a smooth and awesome experience with the drone simulation. \n\n  Join us in making drone simulation cooler and more accessible with the power of Java! ");
+		txtrWelcomeToOur.setText("\n  Welcome to our project for the Object Oriented Programming with Java module WS23/24, led by Professor Robin Müller-Bady.\n\n  In this module, we embarked on an exciting journey to explore the realms of Object-Oriented Programming (OOP) with Java. \n  Our focus has been on the development of a Java application that seamlessly interacts with a drone simulation system. \n  The simulation, powered by a web-based RESTful API, dynamically generates comprehensive reports for a fleet of simulated drones. \n  These reports encompass a wealth of information, ranging from the basic essentials to the intricate specifics of cargo and real-time \n  positional information.\n\n  Our mission in this project is to enhance user interaction with the drone simulator. \n  To achieve this, we are diligently crafting a sophisticated Graphical User Interface (GUI) using Java. \n  The goal is not only to fetch real-time data from the drone simulator API but also to present it in an intuitive and user-friendly manner.\n\n  Our project is conducted under the guidance of Professor Robin Müller-Bady, whose expertise in the field of OOP has been \n  instrumental in shaping our learning experience.\n\n  Our journey in the OOP with Java module has not only been a learning experience but also a practical application of our skills. \n  We are excited to share the progress of our project and invite you to explore the drone simulation through our crafted Java application. ");
 		txtrWelcomeToOur.setFont(new Font("Microsoft Sans Serif", Font.ITALIC, 17));
-		txtrWelcomeToOur.setBounds(30, 100, 1030, 350);
+		txtrWelcomeToOur.setBounds(30, 70, 1030, 400);
 		aboutPanel.add(txtrWelcomeToOur);
 		
 		JPanel teamPanel = new JPanel();
@@ -491,11 +491,11 @@ public class Dashboard extends JFrame {
 		iconBackend.setBounds(50, 80, 150, 150);
 		teamPanel.add(iconBackend);
 		
-		JLabel lblOurTeam = new JLabel("Our Team");
+		JLabel lblOurTeam = new JLabel("Our Team - Group 22");
 		lblOurTeam.setHorizontalAlignment(SwingConstants.LEFT);
 		lblOurTeam.setForeground(Color.WHITE);
 		lblOurTeam.setFont(new Font("Tahoma", Font.BOLD, 21));
-		lblOurTeam.setBounds(20, 30, 200, 50);
+		lblOurTeam.setBounds(20, 30, 300, 50);
 		teamPanel.add(lblOurTeam);
 		
 		JLabel lblBackend = new JLabel("Backend Developer");
@@ -536,7 +536,7 @@ public class Dashboard extends JFrame {
 		lblHana.setHorizontalAlignment(SwingConstants.LEFT);
 		lblHana.setForeground(Color.WHITE);
 		lblHana.setFont(new Font("Tahoma", Font.BOLD, 21));
-		lblHana.setBounds(400, 346, 200, 40);
+		lblHana.setBounds(400, 350, 200, 40);
 		teamPanel.add(lblHana);
 		
 		JLabel iconDocumentation = new JLabel("");
@@ -552,19 +552,19 @@ public class Dashboard extends JFrame {
 		lblDocumentationDevelopers.setBounds(750, 240, 300, 40);
 		teamPanel.add(lblDocumentationDevelopers);
 		
-		JLabel lblTara = new JLabel("Tara Khoramnia");
-		lblTara.setHorizontalAlignment(SwingConstants.LEFT);
-		lblTara.setForeground(Color.WHITE);
-		lblTara.setFont(new Font("Tahoma", Font.BOLD, 21));
-		lblTara.setBounds(750, 300, 200, 40);
-		teamPanel.add(lblTara);
-		
 		JLabel lblReubin = new JLabel("Reubin Sam Thomas");
 		lblReubin.setHorizontalAlignment(SwingConstants.LEFT);
 		lblReubin.setForeground(Color.WHITE);
 		lblReubin.setFont(new Font("Tahoma", Font.BOLD, 21));
-		lblReubin.setBounds(750, 346, 300, 40);
+		lblReubin.setBounds(750, 300, 250, 40);
 		teamPanel.add(lblReubin);
+		
+		JLabel lblTara = new JLabel("Tara Khoramnia ");
+		lblTara.setHorizontalAlignment(SwingConstants.LEFT);
+		lblTara.setForeground(Color.WHITE);
+		lblTara.setFont(new Font("Tahoma", Font.BOLD, 21));
+		lblTara.setBounds(50, 350, 200, 40);
+		teamPanel.add(lblTara);
 		
 		
 		
